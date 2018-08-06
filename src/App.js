@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SalesStaff from './components/SalesStaff';
 import './App.css';
 
 class App extends Component {
@@ -32,13 +33,16 @@ class App extends Component {
           "lastName": "Yuco"
         }
       ],
-      sales: []
+      sales: [],
+      salesInput: "",
+      carInput: ""
     }
   }
   render() {
     return (
-      <div className="App">
+      <div className="">
         <p>Hello World</p>
+        <SalesStaff salesInput={this.state.salesInput} salesPeople={this.state.sellers} />
       </div>
     );
   }
