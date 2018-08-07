@@ -34,15 +34,36 @@ class App extends Component {
         }
       ],
       sales: [],
-      salesInput: "",
-      carInput: ""
+      formInput: "",
     }
   }
+
+  handleInputChange = (event) => {
+    this.setState({
+      formInput: event.target.value
+    })
+  }
+
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+    const sellersCopy = [...this.state.sellers];
+    sellersCopy.push({ name: "Moomba", lastName: "Muloba"});
+
+    this.setState({
+      sellers: sellersCopy
+    })
+  }
+
   render() {
     return (
       <div className="">
         <p>Hello World</p>
-        <SalesStaff salesInput={this.state.salesInput} salesPeople={this.state.sellers} />
+        <SalesStaff
+          salesInput={this.state.formInput}
+          handleInputChange={this.handleInputChange}
+          handleFormSubmit={this.handleFormSubmit}
+          salesPeople={this.state.sellers}
+        />
       </div>
     );
   }

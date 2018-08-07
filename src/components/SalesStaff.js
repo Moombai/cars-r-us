@@ -3,10 +3,10 @@ import React from 'react';
 const SalesStaff = (props) => {
   return (
     <div className="">
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={props.handleFormSubmit}>
         <label>
           Add:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
+          <input type="text" value={props.salesInput} onChange={props.handleInputChange} />
         </label>
         <input type="submit" value="Submit" />
       </form>
