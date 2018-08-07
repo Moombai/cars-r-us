@@ -33,13 +33,20 @@ class RecordSale extends React.Component {
     return (
       <div>
         <h2>Record a Sale</h2>
-        <form onSubmit={(event) => (
+        <form onSubmit={(event) => {
+          // pass form inputs to handler
           this.props.handleSubmit(
             event, this.state.selectedCar, 
             this.state.selectedSalesPerson, 
             this.state.buyerName, 
             this.state.purchasePrice)
-        )}>
+
+            // clear form
+            this.setState({
+              buyerName: "",
+              purchasePrice: ""
+            })
+        }}>
           <label>
             Which car was purchased:
             <select value={this.state.selectedCar} onChange={this.handleCarChange}>

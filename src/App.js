@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SalesStaff from './components/SalesStaff';
 import CarDetails from './components/CarDetails';
 import RecordSale from './components/RecordSale';
+import moment from 'moment';
 import './App.css';
 
 class App extends Component {
@@ -86,21 +87,34 @@ class App extends Component {
     });
   }
 
-  handleSalesFormSubmit = (event, car, seller, buyer, purchasePrice) => {
+  handleSalesFormSubmit = (event, car, seller, buyer, salePrice) => {
     event.preventDefault();
+
+    const newDate = moment().format('l');
+
+    // get the purchase price from state
+    let carFromState =  this.state.cars.find(carState => carState.name === car);
+    let markup = salePrice - carFromState.purchaseValue;
 
     // extract values from arguments
     let sale = {
       car,
       seller,
       buyer,
-      purchasePrice,
+      salePrice,
+      markup,
+      date: newDate,
     };
-    console.log(sale);
 
-    // we create a date using javascript
-    // create a markup value
-    // add sales data to state
+    if (markup >= 0) {
+      this.setState((currentState) => {
+        return {
+          sales: currentState.sales.concat([sale])
+        }
+      })
+    } else {
+      alert("Car cannot be sold for less than the purchase value");
+    }
   }
 
   handleSellerDelete = (name) => {
@@ -122,7 +136,7 @@ class App extends Component {
   render() {
     return (
       <div className="">
-        <p>Hello World</p>
+        <h1>Cars Are Us</h1>
         <SalesStaff
           firstName={this.state.sellerFirstName}
           lastName={this.state.sellerLastName}
