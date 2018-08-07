@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SalesStaff from './components/SalesStaff';
+import CarDetails from './components/CarDetails';
 import './App.css';
 
 class App extends Component {
@@ -36,17 +37,22 @@ class App extends Component {
       sales: [],
       formInput: "",
       sellerFirstName: "",
-      sellerLastName: ""
+      sellerLastName: "",
+      carName: "",
+      carColor: "",
+      carPurchaseValue: ""
     }
   }
 
   handleInputChange = (event) => {
     // Handle data from two input fields
+    console.log(event.target.name);
+    // TODO: Fix the bug preventing the cars from updating correctly
     this.setState({ [event.target.name]: event.target.value });
   }
 
   // copy seller state and update with controlled form data
-  handleFormSubmit = (event) => {
+  handleSellerFormSubmit = (event) => {
     event.preventDefault();
     const sellersCopy = [...this.state.sellers];
     const firstName = this.state.sellerFirstName;
@@ -63,6 +69,25 @@ class App extends Component {
     this.setState({ sellerLastName: "" });
   }
 
+  handleCarsFormSubmit = (event) => {
+    event.preventDefault();
+    const carsCopy = [...this.state.cars];
+    const name = this.state.carName;
+    const color = this.state.carColor;
+    const purchaseValue = this.state.carPurchaseValue;
+
+    carsCopy.push({
+      name: name,
+      color: color,
+      purchaseValue: purchaseValue
+    });
+
+    this.setState({
+      cars: carsCopy
+    });
+
+  }
+
   render() {
     return (
       <div className="">
@@ -71,8 +96,17 @@ class App extends Component {
           firstName={this.state.sellerFirstName}
           lastName={this.state.sellerLastName}
           handleInputChange={this.handleInputChange}
-          handleFormSubmit={this.handleFormSubmit}
+          handleFormSubmit={this.handleSellerFormSubmit}
           salesPeople={this.state.sellers}
+        />
+
+        <CarDetails
+          carInformation={this.state.cars}
+          carName={this.state.carName}
+          carColor={this.state.carColor}
+          carPurchaseValue={this.state.carPurchaseValue}
+          handleInputChange={this.handleInputChange}
+          handleFormSubmit={this.handleCarsFormSubmit}
         />
       </div>
     );
