@@ -46,8 +46,6 @@ class App extends Component {
 
   handleInputChange = (event) => {
     // Handle data from two input fields
-    console.log(event.target.name);
-    // TODO: Fix the bug preventing the cars from updating correctly
     this.setState({ [event.target.name]: event.target.value });
   }
 
@@ -85,7 +83,22 @@ class App extends Component {
     this.setState({
       cars: carsCopy
     });
+  }
 
+  handleSellerDelete = (name) => {
+    this.setState((currentState) => {
+      return {
+        sellers: currentState.sellers.filter((seller) => seller.name !== name)
+      }
+    });
+  }
+
+  handleCarDelete = (carName) => {
+    this.setState((currentState) => {
+      return {
+        cars: currentState.cars.filter((car) => car.name !== carName)
+      }
+    })
   }
 
   render() {
@@ -98,6 +111,7 @@ class App extends Component {
           handleInputChange={this.handleInputChange}
           handleFormSubmit={this.handleSellerFormSubmit}
           salesPeople={this.state.sellers}
+          handleRecordDelete={this.handleSellerDelete}
         />
 
         <CarDetails
@@ -107,6 +121,7 @@ class App extends Component {
           carPurchaseValue={this.state.carPurchaseValue}
           handleInputChange={this.handleInputChange}
           handleFormSubmit={this.handleCarsFormSubmit}
+          handleRecordDelete={this.handleCarDelete}
         />
       </div>
     );

@@ -18,7 +18,9 @@ const SalesStaff = (props) => {
       </form>
       <ul>
         {props.salesPeople.map((salesperson, index) => (
-          <li key={index}>{salesperson.name} {salesperson.lastName}</li>
+          <li key={index}>{salesperson.name} {salesperson.lastName} 
+            <button onClick={() => (props.handleRecordDelete(salesperson.name))}>Delete</button>
+          </li>
         ))}
       </ul>
     </div>

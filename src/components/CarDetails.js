@@ -26,6 +26,7 @@ const CarDetails = (props) => {
         {props.carInformation.map((car, index) => (
           <li key={index}>
             {car.name}
+            <button onClick={() => (props.handleRecordDelete(car.name))}>Delete</button>
             <ul>
               <li>Colour: {car.color}</li>
               <li>Purchase Value: {car.purchaseValue}</li>
