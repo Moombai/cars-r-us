@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SalesStaff from './components/SalesStaff';
 import CarDetails from './components/CarDetails';
+import RecordSale from './components/RecordSale';
 import './App.css';
 
 class App extends Component {
@@ -85,6 +86,23 @@ class App extends Component {
     });
   }
 
+  handleSalesFormSubmit = (event, car, seller, buyer, purchasePrice) => {
+    event.preventDefault();
+
+    // extract values from arguments
+    let sale = {
+      car,
+      seller,
+      buyer,
+      purchasePrice,
+    };
+    console.log(sale);
+
+    // we create a date using javascript
+    // create a markup value
+    // add sales data to state
+  }
+
   handleSellerDelete = (name) => {
     this.setState((currentState) => {
       return {
@@ -122,6 +140,11 @@ class App extends Component {
           handleInputChange={this.handleInputChange}
           handleFormSubmit={this.handleCarsFormSubmit}
           handleRecordDelete={this.handleCarDelete}
+        />
+        <RecordSale
+          carInformation={this.state.cars}
+          salesPeople={this.state.sellers}
+          handleSubmit={this.handleSalesFormSubmit}
         />
       </div>
     );
