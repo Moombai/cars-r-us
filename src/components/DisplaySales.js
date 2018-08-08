@@ -26,6 +26,10 @@ class DisplaySales extends React.Component {
               }
             </select>
           </label>
+          <br/>
+          Sorting options:
+          <button onClick={this.props.sortPrice}>Purchase Price</button>
+          <button onClick={this.props.sortDate}>Date</button>
         </form>
         <div>
           <h3>Seller Sales</h3>

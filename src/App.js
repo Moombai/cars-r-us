@@ -41,7 +41,7 @@ class App extends Component {
         {
           buyer: "Richard",
           car: "Vauxhall Vectra",
-          date: "8/8/2018",
+          date: "1/8/2018",
           markup: 500,
           salePrice: 1500,
           seller: "Will"
@@ -49,7 +49,7 @@ class App extends Component {
         {
           buyer: "Vincent",
           car: "Volkswagen Golf",
-          date: "8/9/2018",
+          date: "3/8/2018",
           markup: 500,
           salePrice: 3000,
           seller: "Will"
@@ -57,7 +57,7 @@ class App extends Component {
         {
           buyer: "Patricia",
           car: "Ferrari 458",
-          date: "8/9/2018",
+          date: "7/8/2018",
           markup: 0,
           salePrice: 200000,
           seller: "Kevin"
@@ -116,7 +116,7 @@ class App extends Component {
   handleSalesFormSubmit = (event, car, seller, buyer, salePrice) => {
     event.preventDefault();
 
-    const newDate = moment().format('l');
+    const newDate = moment().locale('en').format('l');
 
     // get the purchase price from state
     let carFromState =  this.state.cars.find(carState => carState.name === car);
@@ -159,6 +159,51 @@ class App extends Component {
     })
   }
 
+  handlePriceSort = (event) => {
+    event.preventDefault();
+
+    let salesCopy = this.state.sales;
+
+    salesCopy.sort(comparePrice)
+
+    this.setState({
+      sales: salesCopy
+    })
+
+    function comparePrice(a, b) {
+      if (a.salePrice < b.salePrice) {
+        return 1;
+      }
+      if (a.salePrice > b.salePrice) {
+        return -1;
+      }
+      return 0;
+    }
+  }
+
+  handleDateSort = (event) => {
+    event.preventDefault();
+
+    let salesCopy = this.state.sales;
+
+    salesCopy.sort(compareDate);
+
+    this.setState({
+      sales: salesCopy
+    });
+
+    function compareDate(a, b) {
+      if (moment(a.date) < moment(b.date)) {
+        return 1;
+      }
+      if (moment(a.date) > moment(b.date)) {
+        return -1;
+      }
+      return 0;
+    }
+    // TODO: Fix warning message with moment date comparison
+  }
+
   render() {
     return (
       <div className="">
@@ -189,6 +234,8 @@ class App extends Component {
         <DisplaySales
           sales={this.state.sales}
           sellers={this.state.sellers}
+          sortPrice={this.handlePriceSort}
+          sortDate={this.handleDateSort}
         />
       </div>
     );
