@@ -58,7 +58,7 @@ class DisplaySales extends React.Component {
                   <td>{sale.seller}</td>
                   <td>{sale.car}</td>
                   <td>{sale.buyer}</td>
-                  <td>{sale.markup}</td>
+                  <td>£{sale.markup}</td>
                   <td>{sale.date}</td>
                   <td>£{sale.salePrice}</td>
                 </tr>

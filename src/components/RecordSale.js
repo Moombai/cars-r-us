@@ -84,7 +84,7 @@ class RecordSale extends React.Component {
           <label>
             Purchase price:
           <input
-              type="text"
+              type="number"
               name="purchasePrice"
               value={this.state.purchasePrice}
               onChange={this.handleInputChange}

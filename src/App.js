@@ -43,7 +43,7 @@ class App extends Component {
           car: "Vauxhall Vectra",
           date: "8/8/2018",
           markup: 500,
-          salePrice: "1500",
+          salePrice: 1500,
           seller: "Will"
         },
         {
@@ -51,7 +51,7 @@ class App extends Component {
           car: "Volkswagen Golf",
           date: "8/9/2018",
           markup: 500,
-          salePrice: "3000",
+          salePrice: 3000,
           seller: "Will"
         },
         {
@@ -59,7 +59,7 @@ class App extends Component {
           car: "Ferrari 458",
           date: "8/9/2018",
           markup: 0,
-          salePrice: "200000",
+          salePrice: 200000,
           seller: "Kevin"
         }
       ],
@@ -127,7 +127,7 @@ class App extends Component {
       car,
       seller,
       buyer,
-      salePrice,
+      salePrice: Number(salePrice),
       markup,
       date: newDate,
     };
