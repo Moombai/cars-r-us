@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SalesStaff from './components/SalesStaff';
 import CarDetails from './components/CarDetails';
 import RecordSale from './components/RecordSale';
+import DisplaySales from './components/DisplaySales';
 import moment from 'moment';
 import './App.css';
 
@@ -36,7 +37,32 @@ class App extends Component {
           "lastName": "Yuco"
         }
       ],
-      sales: [],
+      sales: [
+        {
+          buyer: "Richard",
+          car: "Vauxhall Vectra",
+          date: "8/8/2018",
+          markup: 500,
+          salePrice: "1500",
+          seller: "Will"
+        },
+        {
+          buyer: "Vincent",
+          car: "Volkswagen Golf",
+          date: "8/9/2018",
+          markup: 500,
+          salePrice: "3000",
+          seller: "Will"
+        },
+        {
+          buyer: "Patricia",
+          car: "Ferrari 458",
+          date: "8/9/2018",
+          markup: 0,
+          salePrice: "200000",
+          seller: "Kevin"
+        }
+      ],
       formInput: "",
       sellerFirstName: "",
       sellerLastName: "",
@@ -159,6 +185,10 @@ class App extends Component {
           carInformation={this.state.cars}
           salesPeople={this.state.sellers}
           handleSubmit={this.handleSalesFormSubmit}
+        />
+        <DisplaySales
+          sales={this.state.sales}
+          sellers={this.state.sellers}
         />
       </div>
     );

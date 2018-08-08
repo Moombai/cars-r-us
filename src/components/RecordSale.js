@@ -25,7 +25,6 @@ class RecordSale extends React.Component {
 
   // handle inputs for buyer name and purchase price
   handleInputChange(event) {
-    console.log(event.target.value)
     this.setState({ [event.target.name]: event.target.value });
   }
 
