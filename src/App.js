@@ -236,6 +236,7 @@ class App extends Component {
           sellers={this.state.sellers}
           sortPrice={this.handlePriceSort}
           sortDate={this.handleDateSort}
+          removeBottomSalesperson={this.handleSellerDelete}
         />
       </div>
     );

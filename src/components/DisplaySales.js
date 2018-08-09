@@ -46,6 +46,8 @@ class DisplaySales extends React.Component {
   render() {
     // get the top and bottom performer
     const performanceData = this.calculatePerformance();
+    const topSeller = performanceData.top;
+    const bottomSeller = performanceData.bottom;
     return (
       <div>
         <h2>Display Sales Component</h2>
@@ -98,8 +100,9 @@ class DisplaySales extends React.Component {
 
           <h3>Top Salesperson Info</h3>
           <p>Which salesperson has sold the most by markup</p>
-          <p><strong>Most sales:</strong> {performanceData.top}</p>
-          <p><strong>Least sales:</strong> {performanceData.bottom}</p>
+          <p><strong>Most sales:</strong> {topSeller}</p>
+          <p><strong>Least sales:</strong> {bottomSeller}</p>
+          Remove bottom performer: <button onClick={() => (this.props.removeBottomSalesperson(bottomSeller))}>Remove</button>
         </div>
       </div>
     );
