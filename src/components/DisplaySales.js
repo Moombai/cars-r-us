@@ -11,7 +11,41 @@ class DisplaySales extends React.Component {
     this.setState({ value: event.target.value });
   }
 
+  calculatePerformance = () => {
+    const trackSales = {};
+    let topPerformer;
+    let worstPerformer;
+
+    this.props.sales.forEach((sale, index) => {
+      if (trackSales[sale.seller]  === undefined) {
+        trackSales[sale.seller] = sale.markup;
+      } else {
+        trackSales[sale.seller] += sale.markup;
+      }
+    });
+
+    let arr = Object.values(trackSales);
+    let min = Math.min(...arr);
+    let max = Math.max(...arr);
+
+    for (var salesperson in trackSales) {
+
+      if (trackSales[salesperson] === max) {
+        topPerformer = salesperson;
+      } else if (trackSales[salesperson] === min) {
+        worstPerformer = salesperson;
+      }
+    }
+
+    return {
+      top: topPerformer,
+      bottom: worstPerformer
+    }
+  }
+
   render() {
+    // get the top and bottom performer
+    const performanceData = this.calculatePerformance();
     return (
       <div>
         <h2>Display Sales Component</h2>
@@ -61,6 +95,11 @@ class DisplaySales extends React.Component {
             }
             </tbody>
           </table>
+
+          <h3>Top Salesperson Info</h3>
+          <p>Which salesperson has sold the most by markup</p>
+          <p><strong>Most sales:</strong> {performanceData.top}</p>
+          <p><strong>Least sales:</strong> {performanceData.bottom}</p>
         </div>
       </div>
     );
